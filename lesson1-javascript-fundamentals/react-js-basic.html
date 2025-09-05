@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리액트 필수 Javascript 핵심문법</title>
+</head>
+<body>
+  <h1>리액트 필수 Javascript 핵심문법</h1>  
+  <h2>1. 화살표 함수 arrow function</h2> 
+  <button id="btn">클릭 테스트</button> 
+  <script>
+    //1. 화살표 함수 arrow function - React 이벤트 핸들러 필수 
+    /*
+        const handleClick=function(){}
+    */
+    const handleClick = () => {
+        alert("React처럼 이벤트 처리");
+        console.log("화살표 함수로 이벤트 처리");
+    }
+    document.getElementById("btn").addEventListener("click",handleClick);
+    /*
+      React :  <Button onClick={handleClick}> 
+    */
+   // 2. 구조 분해 할당 (destructuring assignment ) - React props 와 useState 필수 
+   const user = {name:"손흥민", age:33, city:"LA"}; 
+   // user 객체의 변수 정보가 아주 많다고 가정 
+   // user 객체의 일부 name 과 city 만 필요하여 추출하여 새로운 객체로 만들고자 함 
+   const { name, city } = user; // 필요한 것만 추출 
+   console.log("구조 분해 할당으로 추출: ",name,city);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
