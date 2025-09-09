@@ -54,6 +54,43 @@
         return `${name} ${age}세`;
       };
       console.log("구조분해할당 테스트2", profile2({}));
+      //3. 스프레드 연산자 - React state -> 불변성 필수
+      // React state 배열 업데이트 시 사용한다
+      const todos = ["여행하기", "운동하기"];
+      const newTodos = [...todos, "쇼핑하기"]; // 새 배열 생성
+      console.log("배열 불변성:", newTodos);
+      // React state 객체 업데이트
+      const userState = { name: "손흥민", age: 30 };
+      const updatedUser = { ...userState, city: "서울" };
+      console.log("객체 불변성:", updatedUser);
+      // 아래와 같이 속성을 중복 명시하면 update 가 된다
+      const updatedUser2 = { ...userState, city: "서울", age: 33 };
+      console.log("객체 불변성:", updatedUser2);
+      /*
+          React setState 실제 사용 패턴 
+          const updateState = (currentState, updates) => {
+            return {currentState,...updates}; // 기존 + 새속성 
+          }
+      */
+      // 4. map() 메서드 - React 리스트 렌더링시 사용
+      const users = [
+        { id: 1, name: "손흥민", age: 33 },
+        { id: 2, name: "조규성", age: 28 },
+        { id: 3, name: "카스", age: 26 },
+      ];
+      // React 컴포넌트 리스트 렌더링시 key 포함 필수
+      const userComponents = users.map((user) => {
+        return {
+          key: user.id,
+          jsx: `<div key="${user.id}">${user.name} ${user.age}세 `,
+        };
+      });
+      console.log("React 리스트 리렌더링 map");
+      userComponents.forEach((item) => console.log(item.key, item.jsx));
+      // 조건부 렌더링 , 필터와 함께 사용 , 아래 arrow function 조건식이 true 이면 
+      // 새로운 배열 요소로 추가 
+      const adults = users.filter(user => user.age>=30);
+      console.log("30세이상 선수 배열 ",adults);
     </script>
   </body>
 </html>
