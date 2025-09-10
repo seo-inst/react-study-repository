@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import "./App.css";
+import Greeting from "./components/Greeting";
+import Profile from "./components/Profile";
+// React의 App 컴포넌트
 function App() {
-  const [count, setCount] = useState(0)
+  //javascript code 영역
 
+  // 아래 리턴 부분은 JSX ( 리액트 컴포넌트로 화면이 그려질 내용 정의)
+  // style={{}} // 첫번째 괄호는 jsx 문법 "지금부터 html이 아니야"
+  // 두번째 괄호 {} 는 일반 javascript 문법 - JSON 표현할때 중괄호
+  // 리액트 함수 컴포넌트 리턴 값은 하나로 반환되어야 하므로
+  // <> </> fragment 프래그먼트로 묶어서 주로 반환
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Lesson2 React Basic Study</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>d
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1 style={{ color: "lime" }}>Hello React</h1>
+      <hr className="test"></hr>
+      <Greeting />
+      <hr className="test"></hr>
+      <Profile />
+      <hr className="test"></hr>
+      {/* Greeting 컴포넌트 재사용 */}
+      <Greeting />
+      <hr className="test"></hr>
+      {/* Profile 컴포넌트 재사용 */}
+      <Profile />
     </>
-  )
+  );
 }
 
-export default App
+export default App; // 외부에 import 해서 사용할 함

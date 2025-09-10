@@ -1,0 +1,78 @@
+/* App.css - 전체 앱 레이아웃 스타일 */
+
+/* 앱 전체 컨테이너 */
+.app {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+/* 헤더 영역 */
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 메인 제목 */
+.app-header h1 {
+  font-size: 32px;
+  color: #333;
+  margin: 0 0 12px 0;
+  
+  /* 이모지와 텍스트 간격 조정 */
+  letter-spacing: -0.5px;
+}
+
+/* 부제목 */
+.app-header p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* 카드 그리드 레이아웃 */
+.card-grid {
+  /* Flexbox로 카드 정렬 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  
+  /* 최대 너비 제한으로 중앙 정렬 */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+  
+  .app-header h1 {
+    font-size: 24px;
+  }
+                                                                                                                                                                                                                           
+  .app-header p {
+    font-size: 14px;
+  }
+  
+  .card-grid {
+    gap: 10px;
+  }
+}
+
+/* 다크모드 대응 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  .app {
+    background-color: #1a1a1a;
+  }
+  
+  .app-header h1 {
+    color: #f0f0f0;
+  }
+  
+  .app-header p {
+    color: #b0b0b0;
+  }
+}
