@@ -1,0 +1,80 @@
+/* LikeButton.css - 좋아요 버튼 스타일 */
+
+.like-button {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px 0;
+}
+
+.like-button h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* 좋아요 버튼 기본 스타일 */
+.like-btn {
+  font-size: 18px;
+  padding: 12px 24px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 10px;
+}
+
+.like-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}
+
+/* 좋아요 활성화 상태 */
+.like-btn.liked {
+  background: #ff6b6b;
+  color: white;
+  border-color: #ff5252;
+}
+
+.like-btn.liked:hover {
+  background: #ff5252;
+}
+
+/* 좋아요 개수 */
+.like-count {
+  font-size: 16px;
+  color: #666;
+  margin: 15px 0;
+}
+
+/* 리셋 버튼 */
+.reset-btn {
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background: #f5f5f5;
+}
+
+/* 디버그 정보 */
+.debug {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  border-left: 4px solid #007bff;
+}
+
+.debug p {
+  margin: 5px 0;
+}

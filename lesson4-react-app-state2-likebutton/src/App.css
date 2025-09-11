@@ -1,0 +1,19 @@
+/* App.css - 기본 스타일 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.app {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.app h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
