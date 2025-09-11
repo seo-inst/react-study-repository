@@ -1,0 +1,49 @@
+/* App.css */
+
+/* 기본 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 앱 컨테이너 */
+.app-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+/* 제목 */
+.app-title {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* 부제목 */
+.app-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+/* 카드 그리드 - Flexbox 사용 */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
