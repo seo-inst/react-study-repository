@@ -1,0 +1,109 @@
+/* LoginSystem.css - 로그인 시스템 스타일 */
+
+.login-system {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px 0;
+}
+
+.login-system h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* 로그인된 상태 스타일 */
+.logged-in {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.logged-in h3 {
+  color: #155724;
+  margin-bottom: 10px;
+}
+
+.logged-in p {
+  color: #155724;
+  margin-bottom: 15px;
+}
+
+/* 로그아웃된 상태 스타일 */
+.logged-out {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.logged-out h3 {
+  color: #721c24;
+  margin-bottom: 10px;
+}
+
+.logged-out p {
+  color: #721c24;
+  margin-bottom: 15px;
+}
+
+/* 버튼 스타일 */
+.login-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-btn:hover {
+  background: #0056b3;
+}
+
+.logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #c82333;
+}
+
+/* 환영 메시지 */
+.welcome-message {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 15px 0;
+  color: #856404;
+}
+
+/* 디버그 정보 */
+.debug {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  border-left: 4px solid #6c757d;
+}
+
+.debug p {
+  margin: 5px 0;
+}
