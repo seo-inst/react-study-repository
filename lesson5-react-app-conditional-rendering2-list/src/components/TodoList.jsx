@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./TodoList.css";
 /*
 리스트 렌더링 핵심 포인트:
@@ -21,6 +22,28 @@ import "./TodoList.css";
 */
 function TodoList() {
   // 로직 : javascript
+  // To do list 상태 관리 -> react hook useState
+  // to do list 상태 정보를 저장하는 todos 변수 ,  to do list 상태를 변화시키기 위한 함수 setTodos
+  // 아래 useState(초기값) 은 실제로는 API Server 연동을 통해 확보하지만 지금은 직접 입력한다 ( JSON Array )
+  const [todos, setTodos] = useState([
+    { id: 1, text: "점심 먹기", completed: false },
+    { id: 2, text: "카드 놀이", completed: true },
+  ]);
+  // 새로운 to do 입력 상태
+  const [newTodo, setNewTodo] = useState("");
+
+  // 할일 to do 추가 함수
+  const addTodo = () => {
+    if (newTodo.trim()) {
+      const todo = {
+        id: Date.now(), // 시간정보를 이용해 고유 아이디 생성
+        text: newTodo,
+        completed: false,
+      };
+      setTodos([...todos, todo]);//기존배열에 새항목추가한 새배열 생성해 할당 
+      setNewTodo('') // 입력창 초기화 
+    }
+  };
 
   // 화면 렌더링 : jsx
   return (
@@ -29,17 +52,29 @@ function TodoList() {
 
       {/* 새 할 일 추가 */}
       <div className="add-todo">
-        <input type="text" placeholder="새 할 일을 입력하세요" />
-        <button>추가</button>
+        <input type="text" 
+        placeholder="새 할 일을 입력하세요"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+        onKeyDown={(e) => e.key==='Enter' && addTodo()}
+        />
+        <button onClick={addTodo}>추가</button>
       </div>
 
       {/* 리스트 렌더링 - map() 메서드 사용 */}
-      <ul className="todo-items"></ul>
+      <ul className="todo-items">
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <span className="todo-text">{todo.text}</span>
+          </li>
+        ))}
+      </ul>
 
-      <p className="empty-message">할 일이 없습니다!</p>
+      {/* to do list 가 비어 있을 때 아래를 보이도록 조건 처리한다  */}
+      {todos.length === 0 && <p className="empty-message">할 일이 없습니다!</p>}
 
       <div className="debug">
-        <p>총 할 일: 개</p>
+        <p>총 할 일: {todos.length}개</p>
       </div>
     </div>
   );
