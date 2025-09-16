@@ -1,0 +1,122 @@
+/* TodoList.css - 할 일 목록 스타일 */
+
+.todo-list {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.todo-list h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 할 일 추가 영역 */
+.add-todo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-todo input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-todo button {
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-todo button:hover {
+  background: #0056b3;
+}
+
+/* 할 일 목록 */
+.todo-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background: #f9f9f9;
+}
+
+.todo-item:hover {
+  background: #f0f0f0;
+}
+
+/* 완료된 할 일 */
+.todo-item.completed {
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.todo-text {
+  font-size: 16px;
+  color: #333;
+}
+
+/* 삭제 버튼 */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+/* 빈 목록 메시지 */
+.empty-message {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* 디버그 정보 */
+.debug {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  border-left: 4px solid #28a745;
+}
+
+.debug p {
+  margin: 5px 0;
+}
