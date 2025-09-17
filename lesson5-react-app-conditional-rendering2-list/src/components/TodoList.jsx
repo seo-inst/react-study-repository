@@ -44,6 +44,14 @@ function TodoList() {
       setNewTodo('') // 입력창 초기화 
     }
   };
+  // To do 항목 삭제 함수 
+  const deleteTodo = (id) => {
+    //console.log("삭제할 to do id "+id);
+    // to do list 중 해당 id 를 가진 to do 요소를 삭제하고 to do list를 리렌더링하기 위해서는 react hook state를 이용해야 함 => 변경 위해서는 useState hook 함수가 반환한 두번째 요소인 set계열 함수를 이용해 업데이트해야 한다
+    // filter 함수는 todo.id != id 이 true 이면 새 배열 요소로 추가
+    // 다시 말하면 삭제할 to do id 이면 != 에 의해 false 가 나올 것이고 이는 새 배열 요소에서 제외됨 -> 즉 삭제 효과  
+    setTodos(todos.filter((todo)=> todo.id != id)); 
+  }
 
   // 화면 렌더링 : jsx
   return (
@@ -54,19 +62,37 @@ function TodoList() {
       <div className="add-todo">
         <input type="text" 
         placeholder="새 할 일을 입력하세요"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        onKeyDown={(e) => e.key==='Enter' && addTodo()}
+        value={newTodo} // 입력 폼 요소 값 value를 리액트 state 상태 값으로 관리 
+        onChange={(event) => setNewTodo(event.target.value)} // 입력 요소 value 가 change 변경될 때 react state hook 의 함수로 상태를 변경 -> 앱에 리렌더링 
+        //아래는 key를 눌렀을 때 발생하는 이벤트 
+        
+        // keyDown 이벤트 발생시 실행될 화살표 함수 arrow function 를 등록 binding 
+        // addTodo 가 아니라 addTodo() 로 명시한 이유는 엔터키 이벤트 발생시에 바로 호출 즉 실행되어 todo 를 추가하기 위해 즉 구현부 내에서는 실행을 해야 하므로 반드시 () 를 명시해야 됨  
+        onKeyDown={(event) => event.key==='Enter' && addTodo()}
         />
+        {/* 아래는 버튼이 클릭되어지면 (클릭이벤트) 실행될 함수를 binding 등록 */}
         <button onClick={addTodo}>추가</button>
+       
       </div>
 
       {/* 리스트 렌더링 - map() 메서드 사용 */}
       <ul className="todo-items">
         {todos.map((todo) => (
-          <li key={todo.id}>
+          // 리액트 리스트에서는 key 를 반드시 설정해야 함 -> 오류 방지 및 성능 향상 
+          <li key={todo.id} className={`todo-item ${todo.completed ? 'completed':undefined}`}>
             <span className="todo-text">{todo.text}</span>
+            {/* 삭제 버튼이 클릭되면(클릭이벤트발생시) 실행될 화살표함수를 등록 
+                이후 삭제 버튼을 클릭하면 함수 구현부에서 deleteTodo 함수를 실행하여 to do item을 삭제 
+            */}
+            <button className="delete-btn" onClick={()=> deleteTodo(todo.id)}>삭제</button>
+            {/* 
+                    const deleteTodo = (id) => {
+                      console.log("삭제할 to do id "+id);
+                      setTodos(todos.filter((todo)=> todo.id != id)); 
+                    }
+            */}
           </li>
+          
         ))}
       </ul>
 
