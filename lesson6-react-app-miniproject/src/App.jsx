@@ -7,19 +7,28 @@ import { EXAMPLES } from "./data/data.js";
 
 function App() {
   // state 상태 관리 : useState Hook 을 이용
-  // selectedTopic : 사용자가 어떤 탭을 선택했는지 탭제목을 저장 , 
-  // setSelectedTopic : 사용자가 탭을 선택했을때 React 에 탭 정보 변경을 알려서 리렌더링 되도록 하는 함수 
-  const [selectedTopic,setSelectedTopic] = useState();
+  // selectedTopic : 사용자가 어떤 탭을 선택했는지 탭제목을 저장 ,
+  // setSelectedTopic : 사용자가 탭을 선택했을때 React 에 탭 정보 변경을 알려서 리렌더링 되도록 하는 함수
+  const [selectedTopic, setSelectedTopic] = useState();
   // 탭 버튼 클릭시 호출되는 함수 (탭버튼 이벤트 핸들러)
   //탭 버튼 정보 : components, jsx, props, state 중 하나
   // ( data.js 내의 json 정보)
-  function handleSelect(selectedButton){
-    // react state hook 함수를 호출해 화면 리렌더링을 한다 
+  function handleSelect(selectedButton) {
+    // react state hook 함수를 호출해 화면 리렌더링을 한다
     setSelectedTopic(selectedButton);
   }
-
-
-
+  console.log("Componet rendering");
+  let tabContent = <p>주제를 선택하세요</p>;
+  // 선택된 토픽이 있으면 해당 내용을 표시
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>{EXAMPLES[selectedTopic].code}</pre>
+      </div>
+    );
+  }
   return (
     <div>
       {/* Header 컴포넌트 렌더링 */}
@@ -58,11 +67,35 @@ function App() {
         {/* ===== 섹션 2: Examples ===== */}
         <section id="examples">
           <h2>Examples</h2>
-          <menu>{/* 각 TabButton에 이벤트 핸들러와 선택 상태 전달 */}</menu>
+          <menu>
+            {/* 각 TabButton에 이벤트 핸들러와 선택 상태 전달 */}
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleSelect("components")}
+            >
+              Components
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
+              jsx
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleSelect("props")}
+            >
+              props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              state
+            </TabButton>
+          </menu>
           {/* 조건부로 렌더링되는 컨텐츠 */}
-          <TabButton isSelected={selectedTopic === "components"} onSelect={() => handleSelect("components")}>
-            Components
-          </TabButton>
+          {tabContent}
         </section>
       </main>
     </div>
