@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>리액트 필수 Javascript 핵심문법</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h1>리액트 필수 Javascript 핵심문법</h1>
@@ -13,6 +14,7 @@
     <h2>3. 스프레드 연산자 spread operator</h2>
     <h2>4. map() 메서드</h2>
     <h2>5. ajax axios asyn/await</h2>
+    <button id="ajaxBtn">axios로 사용자 데이터 조회하기</button>
     <h3>6. 별도 파일 module : export / import</h3>
     <script>
       //1. 화살표 함수 arrow function - React 이벤트 핸들러 필수
@@ -87,10 +89,33 @@
       });
       console.log("React 리스트 리렌더링 map");
       userComponents.forEach((item) => console.log(item.key, item.jsx));
-      // 조건부 렌더링 , 필터와 함께 사용 , 아래 arrow function 조건식이 true 이면 
-      // 새로운 배열 요소로 추가 
-      const adults = users.filter(user => user.age>=30);
-      console.log("30세이상 선수 배열 ",adults);
+      // 조건부 렌더링 , 필터와 함께 사용 , 아래 arrow function 조건식이 true 이면
+      // 새로운 배열 요소로 추가
+      const adults = users.filter((user) => user.age >= 30);
+      console.log("30세이상 선수 배열 ", adults);
+
+      /////////////////////axios 로 API Server와 연동하기///////////////////////////////
+      //                fetch  와                       axios 의 특징
+      // 데이터 파싱     response.json() 필요             response.data로 자동 파싱
+      // 코딩 스타일     2개의 await가 필요(head,body각각)  await 한번만 하면 됨
+
+      const getUserData = async () => {
+        try {
+          const response = await axios.get(
+            "https://jsonplaceholder.typicode.com/users/1"
+          );
+          const userData = response.data; // axios는 응답데이터를 response.data에 담아줌
+          console.log(userData.name);
+          alert("axios :" + userData.name);
+          return userData;
+        } catch (error) {
+          console.error("에러 발생:", error.message);
+        }
+      };
+
+      document
+        .querySelector("#ajaxBtn")
+        .addEventListener("click", () => getUserData());
     </script>
   </body>
 </html>
