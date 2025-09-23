@@ -1,6 +1,7 @@
 import React from "react";
 import { MessageContext } from "./contexts/MessageContext";
 import ComponentA from "./components/ComponentA";
+import ComponentB from "./components/ComponentB";
 
 const App = () => {
   const sharedMessage =
@@ -15,6 +16,7 @@ const App = () => {
       */}
       <MessageContext.Provider value={sharedMessage}>
         <ComponentA />
+        <ComponentB />
       </MessageContext.Provider>
     </div>
   );
