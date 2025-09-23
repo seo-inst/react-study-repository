@@ -4,6 +4,12 @@ import axios from "axios";
 import "./App.css";
 import ProductList from "./components/ProductList";
 import ProductForm from "./components/ProductForm";
+/*
+    마운트 시점  useEffect 실행 ( 의존성 빈 배열은 마운트 시에 한번 수행 )
+    -> useEffect 첫번째 인자( loadProducts() 실행 )의 함수가 실행되면서 
+       API Server 의 상품 리스트를 조회해서 가져옴 
+
+*/
 
 // API Server 기본 설정
 const API_BASE_URL = "http://localhost:8080/api/products";
@@ -37,14 +43,19 @@ const App = () => {
   // 상품 추가시 실행될 함수 ( API Server 에 등록할 상품 정보 전달 )
   // productData : 상품등록폼에 저장된 상품 정보 객체
   const addProduct = async (productData) => {
-    try{
-      const response = await axios.post(API_BASE_URL,productData);
-      /* 상품 등록이 성공되면 상품리스트에 추가 상품을 새배열 마지막에 추가해 state에 할당 -> 리렌더링 -> ProductList component 에 새로운 props(상품리스트) 전달 -> 리스트 갱신 
-      */
-     //state Hook : 기존 배열 이용, 새 항목 추가 후 새배열 할당 
-     setProducts([...products,response.data]); 
-    }catch(error){
-      console.error("상품 등록 실패:",error);
+    try {
+      const response = await axios.post(API_BASE_URL, productData);
+      console.log("상품등록 OK", response.data);
+      /* 상품 등록이 성공되면 상품리스트에 추가 상품을 새배열 마지막에 추가해 state에 할당 -> 리렌더링 -> ProductList component 에 새로운 props(상품리스트) 전달 -> 리스트 갱신
+       */
+      //state Hook : 기존 배열 이용, 새 항목 추가 후 새배열 할당
+      //setProducts([...products,response.data]);
+      // 위의 setProducts 로 리스트 업데이트 하는 방식은 다른 사용자들이 등록한 상품 리스트를 볼 수는 없는 구조
+      // 아래와 같이 새롭게 API Server 에 접속해서
+      // 상품 리스트를 가지고 와 업데이트하는 것이 맞음
+      loadProducts();
+    } catch (error) {
+      console.error("상품 등록 실패:", error);
     }
   };
 

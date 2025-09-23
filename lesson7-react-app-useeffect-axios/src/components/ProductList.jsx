@@ -15,8 +15,7 @@ const ProductList = ({ products }) => {
   return (
     // 상품 리스트를 보여주는 영역
     <div className="product-list">
-      <h2>상품 목록 {products.length}개</h2>
-      console.log(products.length);
+      <h2>상품 목록 {products.length}개</h2>     
       {products.map((product) => {
         return (
           <div key={product.id} className="product-card">
