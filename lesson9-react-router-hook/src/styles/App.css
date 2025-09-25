@@ -1,0 +1,8 @@
+.app {
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.app-content {
+  padding-top: 80px; /* navbar 높이만큼 여백 */
+}

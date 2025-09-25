@@ -1,0 +1,163 @@
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 새로운 스타일 추가 */
+
+/* 상품 그리드 레이아웃 */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* 상품 카드 - 클릭 가능한 카드 스타일 */
+.product-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 상품 상세 정보 */
+.product-detail {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+.product-detail .price {
+  font-size: 2rem;
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.product-detail .desc {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+  background-color: #2980b9;
+}
+
+/* 검색 폼 */
+form {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+form input[type="text"] {
+  flex: 1;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #229954;
+}
+
+/* 검색 결과 영역 */
+.search-result {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+/* 정보 박스 - Hook 정보 표시용 */
+.info-box {
+  background-color: #e8f4f8;
+  padding: 1.5rem;
+  border-left: 4px solid #3498db;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.info-box p {
+  margin: 0.5rem 0;
+  font-family: 'Courier New', monospace;
+}
+
+.info-box strong {
+  color: #2c3e50;
+}
+
+.info-box ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.info-box li {
+  margin: 0.5rem 0;
+}
+
+/* 404 페이지 스타일 */
+.page-container h1 {
+  color: #2c3e50;
+}
+
+.page-container p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+}
