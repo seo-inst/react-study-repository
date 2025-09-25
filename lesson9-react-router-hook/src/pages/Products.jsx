@@ -33,13 +33,22 @@ const Products = () => {
   // 3. 뒤로가기: navigate(-1)
   // 4. 앞으로가기: navigate(1)
   // 상품 클릭 핸들러 구현해 활용해봄
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   return (
     <div className="page-container">
       <h1>상품 목록</h1>
       <div className="product-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card" onClick={() => {}}>
+          <div
+            key={product.id}
+            className="product-card"
+            onClick={() => {
+              handleProductClick(product.id);
+            }}
+          >
             <h3>{product.name}</h3>
             <p>{product.price}</p>
           </div>
