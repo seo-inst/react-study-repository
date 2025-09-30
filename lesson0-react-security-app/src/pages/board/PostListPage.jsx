@@ -27,8 +27,8 @@ const PostListPage = () => {
   };
 
   // 로딩 중일 때 - LoadingSpinner 컴포넌트 사용
-  if(loading){
-    return <LoadingSpinner message="게시글을 불러오는 중..."></LoadingSpinner>
+  if (loading) {
+    return <LoadingSpinner message="게시글을 불러오는 중..."></LoadingSpinner>;
   }
 
   return (
@@ -39,10 +39,11 @@ const PostListPage = () => {
       </div>
 
       {/* PostList 컴포넌트 사용 - 기본은 table 뷰 */}
-      {/* 
-       //////////////////////////////////////////////////////////////////////
-      
-      */}
+      <PostList
+        posts={posts}
+        viewType="table" // 테이블 형태로 표시
+        emptyMessage="아직 작성된 게시글이 없습니다."
+      />
     </div>
   );
 };

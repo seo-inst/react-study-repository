@@ -31,6 +31,7 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    return config; // config 객체를 전달
   },
   (error) => {
     return Promise.reject(error);
@@ -50,7 +51,7 @@ api.interceptors.response.use(
       console.log("인증/인가 Error(401/403). Redirecting to login");
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      window.location.href = "/login";// 인증/인가 오류시에는 로그인페이지로 이동시킨다 
+      window.location.href = "/login"; // 인증/인가 오류시에는 로그인페이지로 이동시킨다
     }
     return Promise.reject(error); //API 실행 코드의 catch가 실행되도록 한다  java 의 throw new XXXException() 과 유사
   }
