@@ -59,7 +59,7 @@ const LoginPage = () => {
         error.response?.data?.message ||
         "아이디 또는 비밀번호가 올바르지 않습니다";
       setError(errorMessage);
-      alert(errorMessage);
+      // alert(errorMessage);
     } finally {
       setLoading(false);
     }
