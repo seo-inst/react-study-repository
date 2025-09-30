@@ -1,0 +1,17 @@
+# 프로젝트 생성
+npm create vite@latest lesson0-react-security-app -- --template react
+
+Use rolldown-vite (Experimental)?:  N 
+Install with npm and start now? N  
+
+cd lesson0-react-security-app
+
+# 패키지 설치
+npm install
+npm install react-router-dom axios react-bootstrap bootstrap
+
+# 개발 서버 실행 
+npm run dev
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>localStorage</title>
+  </head>
+  <body>
+    <!--
+            localStorage는 웹 브라우저가 제공하는 웹 스토리지(Web Storage) API
+            클라이언트(사용자 브라우저)에 데이터를 저장할 수 있게 해줌
+            sessionStorage : 세션이 종료되면 사라짐
+            localStorage : 데이터는 사용자가 직접 삭제하거나, 
+            브라우저 캐시 및 데이터가 삭제될 때까지 영구적으로 보존됨
+            용량: 대부분의 브라우저에서 5MB에서 10MB 사이의 비교적 큰 용량을 제공
+            localStorage.setItem(key, value) 메서드를 사용하여 데이터를 저장할 때, 
+            key와 value 모두 반드시 문자열(string) 형태
+    -->
+    <h1>LocalStorage 데이터 관리</h1>
+
+    <div>
+      <h2>1. 데이터 저장</h2>
+      <input type="email" id="emailInput" placeholder="이메일을 입력하세요" />
+      <button onclick="saveData()">저장하기</button>
+    </div>
+    <hr />
+    <div>
+      <h2>2. 저장된 데이터</h2>
+      <p>이메일: <strong id="displayEmail">데이터 없음</strong></p>
+      <button onclick="clearData()">데이터 삭제</button>
+    </div>
+
+    <script>
+      // 1. 데이터를 localStorage에 저장하는 함수
+      function saveData() {
+        // 입력 필드에서 값 가져오기
+        const email = document.getElementById("emailInput").value;
+        if (email) {
+          // 키-값 형태로 문자열로 저장
+          localStorage.setItem("userEmail", email);
+          alert(
+            "데이터가 localStorage에 저장되었습니다! 페이지를 새로고침해도 남아있습니다."
+          );
+          loadData(); // 저장 후 바로 화면 갱신
+        } else {
+          alert("이메일을 모두 입력해주세요.");
+        }
+      }
+
+      // 2. localStorage에서 데이터를 읽어와 화면에 표시하는 함수
+      function loadData() {
+        // 키를 사용하여 저장된 값(문자열) 가져오기
+        /////////////////////////////////////////////
+        const storedEmail = localStorage.getItem("userEmail");
+        // 화면에 표시
+        document.getElementById("displayEmail").textContent =
+          storedEmail || "데이터 없음";
+      }
+
+      // 3. localStorage에서 데이터를 삭제하는 함수
+      function clearData() {
+        // 특정 키의 값만 삭제
+        ////////////////////////////////////////
+        localStorage.removeItem("userEmail");
+        // 또는 모든 데이터 삭제: localStorage.clear();
+
+        alert("데이터가 localStorage에서 삭제되었습니다.");
+        loadData(); // 삭제 후 화면 갱신
+      }
+
+      // 페이지 로드 시 저장된 데이터가 있으면 바로 불러오기
+      window.onload = loadData;
+    </script>
+  </body>
+</html>
