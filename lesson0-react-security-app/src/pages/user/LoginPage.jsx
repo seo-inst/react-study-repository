@@ -32,7 +32,37 @@ const LoginPage = () => {
 
   // 로그인 처리
   const handleSubmit = async (e) => {
-    //////////////////////////////////////
+    e.preventDefault(); // ajax axios 방식으로 로그인 처리 (기존 전송을 막는다)
+    setError(""); //에러 메세지 보여주는 부분 초기화
+    setLoading(true);
+    try {
+      //1. 로그인 API 호출
+      const loginResponse = await api.post("/api/auth/login", formData);
+      //2. JWT 토큰 추출 및 localstorage 에 저장
+      const token = loginResponse.headers["authorization"];
+      if (token) {
+        const jwtToken = token.replace("Bearer ", "");
+        localStorage.setItem("token", jwtToken);
+      }
+      //3. 내 정보 조회
+      // API Server 에서 인증한 회원의 정보를 조회하여 localstorage 에 저장
+      const userResponse = await api.get("/api/members/me");
+      // 4. Context에 사용자 정보(로그인한 회원정보)를 저장 후 홈으로 이동
+      if (userResponse.data.success) {
+        login(userResponse.data.data); //첫번째 data 는 axios 응답 data이고 두번째는 ApiResposeDto의 data(실제 회원정보)
+        navigate("/"); //홈으로 이동
+      }
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      //ApiResponseDto 의 에러 메세지 활용
+      const errorMessage =
+        error.response?.data?.message ||
+        "아이디 또는 비밀번호가 올바르지 않습니다";
+      setError(errorMessage);
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // 재시도 함수
@@ -49,7 +79,13 @@ const LoginPage = () => {
             <h3 className="text-center mb-4">로그인</h3>
 
             {/* 에러 메시지 표시 - ErrorAlert 컴포넌트 사용 */}
-            {/* ////////////////////////////////////// */}
+            {error && (
+              <ErrorAlert
+                message={error}
+                variant="danger"
+                onRetry={handleRetry}
+              />
+            )}
 
             <Form onSubmit={handleSubmit}>
               {/* 아이디 입력 */}
