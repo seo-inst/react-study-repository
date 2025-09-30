@@ -30,14 +30,39 @@ const PostWritePage = () => {
 
   // 게시글 작성 처리
   const handleSubmit = async (e) => {
-    /////////////////////////////////////
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      //API Server에 게시글 등록
+      const response = await api.post("/api/posts", formData);
+      if (response.data.success) {
+        // 게시글쓰기 성공 후 목록페이지로 이동
+        navigate("/posts");
+      }
+    } catch (error) {
+      console.error("게시글쓰기 실패:", error);
+      //ApiResponseDto 의 에러 메세지 활용
+      const errorMessage =
+        error.response?.data?.message ||
+        "게시글 작성에 실패했습니다 다시 시도해주세요";
+      setError(errorMessage);
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // 재시도 함수
-  /////////////////////////////
+  const handleRetry = () => {
+    setError("");
+    //폼데이터는 유지(사용자가 작성한 내용을 보존)
+  };
 
   // 목록으로 돌아가기
-  ////////////////////////////
+  const handleGoBack = () => {
+    navigate("/posts");
+  };
 
   return (
     <div className="row justify-content-center">
@@ -47,9 +72,14 @@ const PostWritePage = () => {
             <h3 className="mb-4">게시글 작성</h3>
 
             {/* 에러 메시지 표시 - ErrorAlert 컴포넌트 사용 */}
-            {/* 
-            /////////////////////////////////////////////////////////
-            */}
+            {error && (
+              <ErrorAlert
+                message={error}
+                variant="danger"
+                onRetry={handleRetry}
+                onGoBack={handleGoBack}
+              />
+            )}
 
             <Form onSubmit={handleSubmit}>
               {/* 제목 입력 */}
