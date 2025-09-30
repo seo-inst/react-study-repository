@@ -6,10 +6,13 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  //////////////////////////////////////////
-
+  // user : 사용자 인증 정보,  logout : 로그아웃 처리 함수만 context 에서 받아온다
+  const { user, logout } = useContext(AuthContext);
   // 로그아웃 처리
-  ////////////////////////////////////////////
+  const handleLogout = () => {
+    logout(); // AuthContext api 의 로그아웃 함수 호출하여 로그아웃처리(로컬스토리지에 인증정보 삭제)
+    navigate("/"); //홈으로 이동
+  };
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">

@@ -10,13 +10,26 @@ const PostListPage = () => {
   const [loading, setLoading] = useState(true);
 
   // 컴포넌트 마운트 시 게시글 목록 조회
-  ///////////////////////////
-
-  // 게시글 목록 조회 함수
-  //////
+  useEffect(() => {
+    fetchPosts();
+  }, []); //의존성 빈배열 -> 마운트시 한번 실행
+  const fetchPosts = async () => {
+    try {
+      const response = await api.get("/api/posts");
+      if (response.data.success) {
+        setPosts(response.data.data);
+      }
+    } catch (error) {
+      console.error("게시글 조회 실패", error);
+    } finally {
+      setLoading(false); // 로딩이 완료되었음을  state 에 알림
+    }
+  };
 
   // 로딩 중일 때 - LoadingSpinner 컴포넌트 사용
-  ////////////////////////////////////////////////////
+  if(loading){
+    return <LoadingSpinner message="게시글을 불러오는 중..."></LoadingSpinner>
+  }
 
   return (
     <div>
