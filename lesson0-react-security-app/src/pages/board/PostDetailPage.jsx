@@ -16,9 +16,31 @@ const PostDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // 컴포넌트 마운트 시 게시글 조회
-  ////////////////////////////////
-  
+  // 컴포넌트 마운트 시 게시글 조회 and 게시물 번호가 업데이트시 실행 (리렌더링)
+  useEffect(() => {
+    //게시물 조회 함수
+    const fetchPost = async () => {
+      try {
+        setLoading(true);
+        setError("");
+        //API Server에서 게시글을 조회한다 (인증이 필요하므로 jwt token을 request header에 저장해 함께 전송 -> axios interceptor가 대행)
+        const response = await api.get(`/api/posts/${id}`);
+        if (response.data.success) {
+          setPost(response.data.data);
+        }
+      } catch (error) {
+        console.error("게시글조회 실패:", error);
+        //ApiResponseDto 의 에러 메세지 활용
+        const errorMessage =
+          error.response?.data?.message ||
+          "게시글 조회에 실패했습니다 다시 시도해주세요";
+        setError(errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPost();
+  }, [id]); //의존성 배열 정보가 변경될때 리렌더링됨 (즉 게시물 번호가 변경되면 상세 게시물 정보를 업데이트)
 
   // 로딩 중일 때 - LoadingSpinner 컴포넌트 사용
   if (loading) {
