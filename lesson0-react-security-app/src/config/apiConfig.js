@@ -69,7 +69,7 @@ api.interceptors.response.use(
 
       if (!isLoginRequest) {
         window.location.href = "/login";
-      } else {a
+      } else {
         // 로그인 요청일 경우 리다이렉션은 건너뛰고 경고만 표시
         console.log(
           `Login API (${originalRequestUrl}) failed with ${status}. Redirect skipped.`
